@@ -5,6 +5,7 @@ import { LoginRequest } from '../interfaces/login-request';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
 import { RegisterRequest } from '../interfaces/register-request';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -75,6 +76,24 @@ export class AuthService {
       const newCount=parseInt(trailCount)-1;
       localStorage.setItem(this.trailKey,newCount.toString());
     }
+  }
+
+  getUserDetail=()=>{
+    const token=this.getToken();
+    if(!token) return null;
+    const decodeToken:any=jwtDecode(token);
+    console.log(decodeToken)
+    const userDetail={
+      id:decodeToken.nameid,
+      fullname:decodeToken.name,
+      email:decodeToken.email,
+      roles:decodeToken.role || [],
+    }
+    return userDetail;
+  }
+
+  logout=()=>{
+    localStorage.removeItem(this.userKey);
   }
 
   }

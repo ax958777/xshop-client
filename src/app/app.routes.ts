@@ -5,6 +5,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { CreditShopComponent } from './pages/credit-shop/credit-shop.component';
 import { authGuard } from './guards/auth.guard';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { AccountComponent } from './pages/account/account.component';
 
 export const routes: Routes = [
     {
@@ -27,6 +28,11 @@ export const routes: Routes = [
     {
       path: 'checkout',
       component: CheckoutComponent,
+      canActivate:[authGuard]
+    },
+    {
+      path: 'account/:id',
+      component: AccountComponent,
       canActivate:[authGuard]
     },
 ];
