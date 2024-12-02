@@ -8,6 +8,7 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { AccountComponent } from './pages/account/account.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 
 export const routes: Routes = [
     {
@@ -44,5 +45,10 @@ export const routes: Routes = [
     {
       path: 'reset-password',
       component: ResetPasswordComponent,
+    },
+    {
+      path: 'change-password',
+      component: ChangePasswordComponent,
+      canActivate:[authGuard]
     },
 ];

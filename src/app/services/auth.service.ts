@@ -7,6 +7,7 @@ import { environment } from '../../environments/environment.development';
 import { RegisterRequest } from '../interfaces/register-request';
 import { jwtDecode } from 'jwt-decode';
 import { ResetPasswordRequest } from '../interfaces/reset-password-request';
+import { ChangePasswordRequest } from '../interfaces/change-password-request';
 
 @Injectable({
   providedIn: 'root'
@@ -83,7 +84,7 @@ export class AuthService {
     const token=this.getToken();
     if(!token) return null;
     const decodeToken:any=jwtDecode(token);
-    console.log(decodeToken)
+    //console.log(decodeToken)
     const userDetail={
       id:decodeToken.nameid,
       fullname:decodeToken.name,
@@ -103,5 +104,8 @@ export class AuthService {
     });
   resetPassword=(resetPassword:ResetPasswordRequest):Observable<AuthResponse>=>
     this.http.post<AuthResponse>(`${this.apiUrl}account/reset-password`,resetPassword);
+
+  changePassword=(changePassword:ChangePasswordRequest):Observable<AuthResponse>=>
+    this.http.post<AuthResponse>(`${this.apiUrl}account/change-password`,changePassword)
 
   }
