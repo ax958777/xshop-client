@@ -9,6 +9,8 @@ import { AccountComponent } from './pages/account/account.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
+import { ListModelingComponent } from './pages/list-modeling/list-modeling.component';
+import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
     {
@@ -50,5 +52,14 @@ export const routes: Routes = [
       path: 'change-password',
       component: ChangePasswordComponent,
       canActivate:[authGuard]
+    },
+    {
+      path: 'list-modeling',
+      component: ListModelingComponent,
+      canActivate:[authGuard]
+    },
+    {
+      path: '',
+      component: HomeComponent,
     },
 ];
