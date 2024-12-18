@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ResetPasswordRequest } from '../interfaces/reset-password-request';
-import { AuthService } from '../services/auth.service';
+import { ResetPasswordRequest } from '../../interfaces/reset-password-request';
+import { AuthService } from '../../services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

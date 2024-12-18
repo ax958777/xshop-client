@@ -21,7 +21,6 @@ export class AnimationComponent implements OnInit {
     this.modelStatus();
     
     this.anmServ.createScene(this.rendererCanvas);
-    this.anmServ.resize();
     this.modelStatus();
  
   }

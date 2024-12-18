@@ -100,15 +100,6 @@ export class AnimationService implements OnDestroy {
     this.scene.add(dirLight2);
   }
 
-  public resize():void{
-    const width=window.innerWidth*0.7;
-    const height=window.innerHeight*0.7;
-
-    this.camera.aspect=width/height;
-    this.camera.updateProjectionMatrix();
-
-    this.renderer.setSize(width,height);
-  }
 
   loadModel():void{
     const dracoLoader=new DRACOLoader();

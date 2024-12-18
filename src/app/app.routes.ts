@@ -7,10 +7,10 @@ import { authGuard } from './guards/auth.guard';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { AccountComponent } from './pages/account/account.component';
 import { ForgetPasswordComponent } from './pages/forget-password/forget-password.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
-import { ListModelingComponent } from './pages/list-modeling/list-modeling.component';
 import { HomeComponent } from './pages/home/home.component';
+import { MyThreedModelsComponent } from './pages/my-threed-models/my-threed-models.component';
 
 export const routes: Routes = [
     {
@@ -54,12 +54,12 @@ export const routes: Routes = [
       canActivate:[authGuard]
     },
     {
-      path: 'list-modeling',
-      component: ListModelingComponent,
-      canActivate:[authGuard]
-    },
-    {
       path: '',
       component: HomeComponent,
+    },
+    {
+      path: 'my-3d-models',
+      component: MyThreedModelsComponent,
+      canActivate:[authGuard]
     },
 ];

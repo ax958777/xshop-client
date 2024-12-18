@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModelingAddEditComponent } from './modeling-add-edit.component';
+import { ModelUploaderComponent } from './model-uploader.component';
 
-describe('ModelingAddEditComponent', () => {
-  let component: ModelingAddEditComponent;
-  let fixture: ComponentFixture<ModelingAddEditComponent>;
+describe('ModelUploaderComponent', () => {
+  let component: ModelUploaderComponent;
+  let fixture: ComponentFixture<ModelUploaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ModelingAddEditComponent]
+      imports: [ModelUploaderComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ModelingAddEditComponent);
+    fixture = TestBed.createComponent(ModelUploaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

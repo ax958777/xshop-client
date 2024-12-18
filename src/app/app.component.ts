@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { OnInit } from '@angular/core';
 import { initFlowbite } from 'flowbite';
-import { MegamenuComponent } from './componets/megamenu/megamenu.component';
-import { SidebarComponent } from './componets/sidebar/sidebar.component';
+import { MegamenuComponent } from './components/megamenu/megamenu.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',

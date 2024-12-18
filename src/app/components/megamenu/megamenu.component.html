@@ -51,6 +51,11 @@
             <span>Change Password</span>
           </button>
         </mat-menu>
+        @if (authService.isLoggedIn()){
+        <a mat-buuton [routerLink]="'my-3d-models'">
+          <mat-icon> table_view </mat-icon>
+        </a>
+        }
       </div>
 
       } } @else {
