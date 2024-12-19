@@ -15,7 +15,7 @@ export class AnimationService implements OnDestroy {
 
   public theModel:any;
 
-  public canvas:HTMLCanvasElement;
+  public canvas:ElementRef<HTMLCanvasElement>;
   public renderer:THREE.WebGLRenderer;
   public camera:THREE.PerspectiveCamera;
   public scene:THREE.Scene;
@@ -35,6 +35,7 @@ export class AnimationService implements OnDestroy {
   public constructor(private ngZone:NgZone) { }
 
   ngOnDestroy(): void {
+    window.removeEventListener('resize',()=>this.onWindowResize());
     if(this.frameId!=null){
       cancelAnimationFrame(this.frameId);
     }
@@ -46,11 +47,11 @@ export class AnimationService implements OnDestroy {
   }
 
   public createScene(canvas:ElementRef<HTMLCanvasElement>):void{
-    this.canvas=canvas.nativeElement;
-    this.canvas.appendChild(this.stats.dom);
+    this.canvas=canvas;
+    //this.canvas.appendChild(this.stats.dom);
 
     this.renderer=new THREE.WebGLRenderer({
-      canvas:this.canvas,
+      canvas:this.canvas.nativeElement,
       antialias:true
     });
 
@@ -71,6 +72,10 @@ export class AnimationService implements OnDestroy {
     this.loadModel();
 
     this.initOrbitControl();
+
+    //Handle window resize
+    window.addEventListener('resize',()=>this.onWindowResize());
+
 
   }
 
@@ -128,6 +133,23 @@ export class AnimationService implements OnDestroy {
     }
 
   }
-
+  private getWidth():number{
+    return this.canvas.nativeElement?.parentElement?.clientWidth  || window.innerWidth;
+  }
+  
+  private getHeight():number{
+    return this.canvas?.nativeElement?.parentElement?.clientHeight  || window.innerHeight;
+  }
+  
+  private onWindowResize():void{
+    if(this.camera && this.renderer){
+      this.camera.aspect=this.getAspectRatio();
+      this.camera.updateProjectionMatrix();
+      this.renderer.setSize(this.getWidth(),this.getHeight());
+    }
+  }
+  private getAspectRatio():number{
+    return this.getWidth()/this.getHeight();
+  }
  
 }

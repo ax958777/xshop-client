@@ -4,4 +4,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.cdk-global-overlay-wrapper {
+    display: flex;
+    position: absolute;
+    z-index: 1000;
+    overflow: auto;
+    pointer-events: auto;  
+  }
+
 

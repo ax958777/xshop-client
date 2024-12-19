@@ -7,6 +7,8 @@ import { CoreService } from '../../services/core.service';
 import { ModelService } from '../../services/model.service';
 import { ModelUploaderComponent } from '../model-uploader/model-uploader.component';
 import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { environment } from '../../../environments/environment.development';
+import { ThreedPreviewComponent } from '../threed-preview/threed-preview.component';
 
 @Component({
   selector: 'app-model-add-edit-dialog',
@@ -16,6 +18,7 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     ModelUploaderComponent, 
     MatIconModule,
+    ThreedPreviewComponent,
   ],
   templateUrl: './model-add-edit-dialog.component.html',
   styleUrl: './model-add-edit-dialog.component.css'
@@ -23,10 +26,14 @@ import { MatIcon, MatIconModule } from '@angular/material/icon';
 export class ModelAddEditDialogComponent implements OnInit{
   form!:FormGroup;
   fb=inject(FormBuilder);
+  apiUrl:string=environment.API_URL;
+
 
   categories=['Construction','Machine','Products','Games','Cosmics'];
 
   isSubmiting:boolean=false;
+
+  uploadProgress=0;
 
   private _dialogRef=inject(MatDialogRef<ModelAddEditDialogComponent>);
   private _coreService=inject(CoreService);
@@ -39,6 +46,7 @@ export class ModelAddEditDialogComponent implements OnInit{
       category:['',[Validators.required]],
       price:[0,[Validators.required]],
       description:['',[Validators.required]],
+      models:[[]],
     });
     this.form.patchValue(this.data);
   }
@@ -48,7 +56,7 @@ export class ModelAddEditDialogComponent implements OnInit{
       this.isSubmiting=true;
       const modelData:ModelingRequest={
         ...this.form.value,
-      
+        models:this.form.get('models')?.value || [],
       }
       if(this.data){
         this._mdlService.updateModeling(this.data.id,modelData).subscribe({
@@ -83,5 +91,26 @@ export class ModelAddEditDialogComponent implements OnInit{
   }
   onCancelClick(){
      this._dialogRef.close();
+  }
+
+  getModelUrl(fileId:String){
+    return this.apiUrl+'file/' + fileId;
+  }
+
+  removeModel(model:string,e:Event){
+    e.preventDefault();
+    const index=this.form.get('models').value.indexOf(model);
+    if(index>-1){
+      this.form.get('models').value.splice(index,1);
+    }
+  }
+
+  onFilesUploaded(urls:string[]){
+    this.form.get('models')? this.form.get('models').value.push(...urls)
+    :this.form.patchValue({models:urls});
+  }
+
+  onUploadProgress(progress:number){
+    this.uploadProgress=progress;
   }
 }

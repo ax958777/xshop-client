@@ -1,0 +1,40 @@
+<div class="relative w-full h-full min-h-[400px]">
+  <!-- Loading indicator -->
+  <div
+    *ngIf="isLoading"
+    class="absolute inset-0 flex items-center justify-center bg-black/10 backdrop-blur-sm"
+  >
+    <div
+      class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-500"
+    ></div>
+  </div>
+
+  <!-- Canvas Container -->
+  <canvas
+    #canvas
+    class="w-full h-full rounded-lg shadow-lg"
+    [class.opacity-0]="isLoading"
+    [class.opacity-100]="!isLoading"
+  >
+    <!-- Controls Overlay-->
+    <div class="absolute bottom-4 right-4 flex gap-2">
+      <button
+        (click)="resetCamera()"
+        class="p-2 bg-white/90 hover:bg-white rounded-full shadow-lg transition-colors"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          viewBox="0 0 20 20 "
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H4zm0 2h12v12H4V4zm3 3a1 1 0 011-1h4a1 1 0 110 2H8a1 1 0 01-1-1z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
+    </div>
+  </canvas>
+</div>
