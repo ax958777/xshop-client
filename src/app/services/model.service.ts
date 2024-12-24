@@ -17,6 +17,10 @@ export class ModelService {
     return this._http.get(`${this.apiUrl}modeling`)
   }
 
+  getAllModels():Observable<any>{
+    return this._http.get(`${this.apiUrl}modeling/all`)
+  }
+
   deleteModeling(id:String):Observable<any>{
     return this._http.delete(`${this.apiUrl}modeling/${id}`)
   }

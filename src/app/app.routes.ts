@@ -11,6 +11,7 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MyThreedModelsComponent } from './pages/my-threed-models/my-threed-models.component';
+import { ThreedModelsComponent } from './pages/threed-models/threed-models.component';
 
 export const routes: Routes = [
     {
@@ -61,5 +62,9 @@ export const routes: Routes = [
       path: 'my-3d-models',
       component: MyThreedModelsComponent,
       canActivate:[authGuard]
+    },
+    {
+      path: '3d-models',
+      component: ThreedModelsComponent,
     },
 ];

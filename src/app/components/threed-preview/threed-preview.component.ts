@@ -64,7 +64,7 @@ export class ThreedPreviewComponent implements OnInit{
     const ambientLight=new THREE.AmbientLight(0xffffff,0.5);
     this.scene.add(ambientLight);
 
-    const directionalLight=new THREE.DirectionalLight(0xffffff,1);
+    const directionalLight=new THREE.DirectionalLight(0xffffff,4);
     directionalLight.position.set(5,5,5);
     directionalLight.castShadow=true;
     this.scene.add(directionalLight);
@@ -97,7 +97,7 @@ private loadModel():void{
           const size=box.getSize(new THREE.Vector3());
 
           const maxDim=Math.max(size.x,size.y,size.z);
-          const scale=2/maxDim;
+          const scale=4/maxDim;
           this.model.scale.multiplyScalar(scale);
 
           this.model.position.sub(center.multiplyScalar(scale));

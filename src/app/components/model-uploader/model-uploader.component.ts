@@ -48,9 +48,9 @@ export class ModelUploaderComponent {
 
   handleFiles(fileList:FileList){
     Array.from(fileList).forEach((file)=>{
-      /* if(!(file.type.includes('.glb') || file.type.includes('.gltf'))){
+      if((!file.name.includes('.glb') && !file.name.includes('.gltf'))){
         return
-      } */
+      }
       const reader=new FileReader();
       reader.onload=(e:ProgressEvent<FileReader>)=>{
         this.files.push({
